@@ -2,14 +2,21 @@
 // Tạo 1 object tùy ý có 5 trường, có 2 trường là method, trong method phải dùng keyword this
 const date = 'date of manufacture'
 const myBad = {
-	brand	: 'YSL',   				    
+	brand	: 'YSL',   		    
     [date]: '11/10/2022',		    	    
-	size: function() { console.log('22*16*7') },    
-    color: function() { console.log('do') }, 
+	size: function() { 
+        console.log('22*16*7');
+    },    
+    color: function() {
+         console.log('do');
+        }, 
     sayName: function() { 			  
         console.log(this.brand);  
     }, 
 };
+
+    
+
 
 // Sửa property
 myBad.brand = 'hơi mợt';
