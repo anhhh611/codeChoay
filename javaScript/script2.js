@@ -38,14 +38,14 @@ const b = {
     console.log(this.brand);
   },
 };
-Object.assign(a, {
-  brand: "hơi mợt",
-  uses: function () {
-    console.log("zay dam");
-  },
-});
-console.log(a);//{brand: 'hơi mợt', date of manufacture: '13/10/2022', uses: ƒ, sayName: ƒ} //a.uses() = zay dam
-console.log(b);//{brand: 'hơi mợt', uses: ƒ, sayName: ƒ}
+Object.assign(b,a);
+console.log(a);//{brand: 'YSL', date of manufacture: '13/10/2022', uses: ƒ, sayName: ƒ} //a.uses() = hang out
+console.log(b);//{brand: 'YSL', date of manufacture: '13/10/2022', uses: ƒ, sayName: ƒ} //b.uses() = hang out,b.sayName() = YSL 
+// Chú ý: copy các trường từ object a sang object b sẽ có 2 TH 
+//TH 1. Đối với các trường có keys trùng nhau thì value của a sẽ đè lên value của b
+//TH 2. Đối với các trường KHÔNG có keys trùng nhau (a có mà b không có) thì sẽ tự động được thêm vào b
+// TH đặc biệt : copy a sang 1 object mới => Object.assign({},a);
+
 
 //3. cho 1 JSON như sau: const c = '{name: 'x', age: 30, gender: 'male'}',
 //hãy chuyển đổi JSON này thành object trong JS.
