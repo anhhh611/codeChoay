@@ -52,6 +52,8 @@ bong(null, 2);    // null 2
 //Lần 4: argument 1 là number, không truyền vào argument 2
 bong(1);         // 1 undefined
 
-
+//Chú ý: Khi truyền đối số cho hàm ở dạng giá trị, 
+//giá trị của đối số được sao chép vào tham số của hàm. 
+//Đối số sẽ không bị thay đổi sau lời gọi hàm.
 
 
