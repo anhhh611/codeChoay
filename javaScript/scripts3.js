@@ -1,11 +1,57 @@
-//Tách nhánh js-2 từ nhánh chính, tạo 1 file mới scripts3.js có nội dung chứa các code sau
+//Tách nhánh js-3 từ nhánh chính, tạo 1 file mới scripts3.js có nội dung chứa các code sau
 //1. Tạo 2 function tên và nội dung tùy ý theo 2 cách Function declaration và Function expression
-//2. Tạo 1 function có 3 parameters, nội dung là console log ra 3 parameters đó. Call function đó với 3 trường hợp: call với 3 arguments, 2 arguments và 0 argument
-//3. Tạo 1 function nhận vào 1 parameter là 1 object bất kỳ. Mutate object đó trong nội dung function. Console.log object đó trước và sau khi gọi function
-//4. Tạo 1 function nhận vào 2 parameters. Nội dung function là console log ra (parameter1 + parameter 2). Call function đó 4 lần.
+//Function declaration
+function myFunction(a, b) {
+  return a * b;
+}
+
+myFunction(4, 3);
+
+//Function expression
+const x = function (a, b) {
+  return a * b;
+};
+x(4, 3);
+
+//2. Tạo 1 function có 3 parameters, nội dung là console log ra 3 parameters đó.
+function test(x, y, z) {
+  console.log(x, y, z);
+}
+//Call function đó với 3 trường hợp: call với 3 arguments, 2 arguments và 0 argument
+//call với 3 arguments
+test(1, 2, 3); // 1 2 3
+//2 arguments
+test(1, 2); // 1 2 undefined
+//0 argument
+test(); // undefined undefined undefined
+
+//3. Tạo 1 function nhận vào 1 parameter là 1 object bất kỳ.
+//Mutate object đó trong nội dung function.
+const ten = { name: "my name" };
+function changeName(object) {
+  object.name = "new name";
+}
+//Console.log object đó trước khi gọi function
+console.log(ten); //{name: 'my name'}
+
+//Console.log object đó sau khi gọi function
+changeName(ten); //undefined
+console.log(ten); //{name: 'new name'}
+
+//4. Tạo 1 function nhận vào 2 parameters. Nội dung function là console log ra (parameter1 + parameter 2).
+//Call function đó 4 lần.
+function bong(dangiu, danhda) {
+  console.log(dangiu, danhda);
+};
 //Lần 1: argument 1 là 1 number, argument 2 là 1 number.
+bong(1,2);        // 1 2
 //Lần 2: argument 1 là 1 number, argument 2 là 1 string.
+bong(1,'xinhdep');// 1 'xinhdep'
 //Lần 3: argument 1 là null, argument 2 là 1 number
+bong(null, 2);    // null 2
 //Lần 4: argument 1 là number, không truyền vào argument 2
-//* tự dự đoán kết quả sẽ log ra console trước khi gọi để đối chiếu
-//Tạo 1 PR chứa file thay đổi này từ nhánh js-2 vào nhánh chính, dán link PR làm câu trả lời
+bong(1);         // 1 undefined
+
+
+
+
