@@ -21,10 +21,31 @@ function function2 (a, b = a + 1, c = b + 2, d) {
 //3. Tạo 4 function, đều nhận vào 2 parameters, có tên là add, sub, mul, div
 // lần lượt có tác dụng sau: trả về kết quả tổng, hiệu, tích, thương của 2 parameters. 
 //VD add(1,2) sẽ trả về 3. mul(1,2) sẽ trả về 2. Lưu ý: dấu nhân trong js sẽ là ký tự asterisk (*), dấu chia trong js sẽ là ký tự slash (/).
+function sum(x, y) { 
+    return x + y;
+}
+sum(1,2); // 3
+function sub(x, y) { 
+    return x - y;
+}
+sub(1,2); //-1
+function mul(x, y) { 
+    return x*y;
+}
+mul(1,2);  // 2
+function div(x, y) { 
+    return x/y;
+}
+div(1,2);  //0.5
+
 
 //4. Tạo 1 function fuelCalc có tác dụng tính giá xăng RON 95-III, nhận vào 1 tham số là số lít xăng và sẽ trả về kết quả là số lít xăng nhân với 22000. 
 //VD a(10) sẽ trả về 220000
-
+function fuelCalcl(x, y) { 
+    console.log ('Giá xăng RON 95-III là' + ' ' + x*y);
+    //return x*y
+}
+fuelCalcl(10,22000); // Giá xăng RON 95-III là 220000
 
 //5. Tạo 1 function waveAlpha2015FuelCalc nhận vào 1 tham số là 1 function. 
 //Function b có nội dung sau: tạo 1 biến maximum có giá trị là số lít xăng tối đa của xe Wave Alpha 2015 (tra gg) 
