@@ -41,16 +41,16 @@ console.log(ten); //{name: 'new name'}
 //4. Tạo 1 function nhận vào 2 parameters. Nội dung function là console log ra (parameter1 + parameter 2).
 //Call function đó 4 lần.
 function bong(dangiu, danhda) {
-  console.log(dangiu, danhda);
+  console.log(dangiu + danhda);
 };
 //Lần 1: argument 1 là 1 number, argument 2 là 1 number.
-bong(1,2);        // 1 2
+bong(1,2);        // 3
 //Lần 2: argument 1 là 1 number, argument 2 là 1 string.
-bong(1,'xinhdep');// 1 'xinhdep'
+bong(1,'xinhdep');// 1xinhdep
 //Lần 3: argument 1 là null, argument 2 là 1 number
-bong(null, 2);    // null 2
+bong(null, 2);    // 2
 //Lần 4: argument 1 là number, không truyền vào argument 2
-bong(1);         // 1 undefined
+bong(1);         // NaN
 
 //Chú ý: Khi truyền đối số cho hàm ở dạng giá trị, 
 //giá trị của đối số được sao chép vào tham số của hàm. 
