@@ -173,14 +173,14 @@ propertyChecker({ key: "value" }, "key1"); // false
 // }
 // convertJSONData trả về giá trị của message
 let x = {
-  statusCode: 200,
+  statusCode: number,
   data: {
-    message: "Logged in sucessfully",
+    message: string,
   },
 };
 function convertJSONData(x) {
   return message;
-}
+};
 
 // + fetchJSONData nhận vào 1 tham số y là 1 callback function. Callback y này sẽ nhận vào tham số là 1 JSON là response từ API, JSON đó có dạng sau:
 // {
@@ -192,9 +192,9 @@ function convertJSONData(x) {
 // và trả về giá trị của message
 function fetchJSONData(convertJSONData) {
   const JSONdata = {
-    statusCode: 200,
+    statusCode: number,
     data: {
-      message: "Logged in sucessfully",
+      message: string,
     },
   };
   return convertJSONData(message);
