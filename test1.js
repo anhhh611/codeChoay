@@ -65,7 +65,7 @@ let c2 = Object.assign({}, c, {
 });
 let c3 = Object.assign({}, c, delete c.name, delete c.brand, {
   sayName: function () {
-    console.log(this.name);
+    console.log(this.brand);
   },
 });
 
@@ -108,9 +108,9 @@ yearChecker("01/01/2021"); //false
 // - diskArea(x) {} : nhận vào 1 number x là bán kính của 1 hình tròn, trả về diện tích của hình tròn đó (có thể tra gg để tìm công thức tính hình tròn)
 // VD diskArea(5) sẽ trả về 78.5398163397 (không cần làm tròn)
 function diskArea(bkHinhTron) {
-  return "Diện tích của hình tròn là :" + bkHinhTron * bkHinhTron * 3.1416;
+  return "Diện tích của hình tròn là :" + Math.pow(bkHinhTron, 2) * 3.1416;
 }
-diskArea(5); // 78.5398163397
+diskArea(5); // 'Diện tích của hình tròn là :78.53999999999999'
 
 // - beforeLastIndex(x) {} : nhận vào 1 tham số x là 1 array, trả về item trước item cuối cùng của array đó
 // VD beforeLastIndex([1, '2', true]) sẽ trả về '2', beforeLastIndex(['a', null, 100, false]) sẽ trả về 100
@@ -173,14 +173,15 @@ propertyChecker({ key: "value" }, "key1"); // false
 // }
 // convertJSONData trả về giá trị của message
 let x = {
-  statusCode: number,
+  statusCode: 200,
   data: {
-    message: string,
+    message: "Logged in sucessfully",
   },
 };
+let obj = JSON.stringify(x);
 function convertJSONData(x) {
-  return message;
-};
+  return x.data.message;
+}
 
 // + fetchJSONData nhận vào 1 tham số y là 1 callback function. Callback y này sẽ nhận vào tham số là 1 JSON là response từ API, JSON đó có dạng sau:
 // {
@@ -192,17 +193,17 @@ function convertJSONData(x) {
 // và trả về giá trị của message
 function fetchJSONData(convertJSONData) {
   const JSONdata = {
-    statusCode: number,
+    statusCode: 200,
     data: {
-      message: string,
+      message: "Logged in sucessfully",
     },
   };
-  return convertJSONData(message);
+  return convertJSONData(JSONdata);
 }
 // + ngoài ra, trong nội dung fetchJSONData sẽ có 1 biến tên là JSONdata, có giá trị là 1 JSON có dạng như trên
 //  Khi call createJSONData và truyền vào cho nó 1 callback, sẽ trả về giá trị của message
 
-fetchJSONData(convertJSONData); // "Logged in sucessfully"
+fetchJSONData(convertJSONData); // 'Logged in sucessfully'
 // VD fetchJSONData(x) {
 // data = {
 // statusCode: 200,
