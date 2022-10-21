@@ -1,60 +1,57 @@
 // Câu 1
-// Tách nhánh js-operators-if từ nhánh chính, tạo 1 file test2.js để thực hiện các nội dung sau: (KHÔNG console.log, dùng cấu trúc if-else trong các bài tạo hàm chứ không dùng toán tử ba ngôi)
-// Tạo PR vào nhánh chính và dán link PR vào câu trả lời
-
-// . Dự đoán kết quả của các biến sau, comment kết quả vào bên cạnh
+// B1. Dự đoán kết quả của các biến sau, comment kết quả vào bên cạnh
 // // VD: const b = 1 + 1 // 2
-// const a1 = 'abc' + undefined;
-// const b2 = null + !NaN;
-// const b3 = undefined + null;
-// const b4 = '12' + -12;
-// const b5 = -12 + !undefined;
-// const b6 = '500ae' + '100ae';
-// const b7 = !Number(" ") + 'def';
-// const b8 = !Boolean('abc') + false;
-// const b9 = '100.0' + '20';
-// const b10 = 0 + '0'
+const a1 = "abc" + undefined; // 'abcundefined'
+const b2 = null + !NaN; // 0 + true = 0 + 1 = 1
+const b3 = undefined + null; // NaN + 0 = NaN
+const b4 = "12" + -12; // 12 + (-12) = 0
+const b5 = -12 + !undefined; // -12 + true = -12 + 1 = -11
+const b6 = "500ae" + "100ae"; // '500ae100ae'
+const b7 = !Number(" ") + "def"; // !0 + 'def' = true + 'def' = 1 + 'def' = '1def'
+const b8 = !Boolean("abc") + false; //false + false = 0 + 0 = 0
+const b9 = "100.0" + "20"; // 100 + 20 = 120
+const b10 = 0 + "0"; // 0 + 0 = 0
 
-// const c1 =  - undefined
-// const c2 = true - !'abc'
-// const c3 = !'120' - 
-// const c4 = !true - !true
-// const c5 = 120 * '10'
-// const c6 = !3.1416 * undefined
-// const c7 = undefined / !null
-// const c8 = Boolean(undefined) / !false;
-// const c9 = '!100.0' - '20';
-// const c10 = 'abc' - 'a'
+const c1 = NaN - undefined; // NaN - NaN = NaN
+const c2 = true - !"abc"; // true - false = 1 - 0 = 1
+const c3 = !"120" - NaN; // false - NaN = NaN
+const c4 = !true - !true; //false - false = 0 - 0 = 0
+const c5 = 120 * "10"; //120*10 = 12000
+const c6 = !3.1416 * undefined; // false*NaN = NaN
+const c7 = undefined / !null; //NaN/true = NaN
+const c8 = Boolean(undefined) / !false; //false/true = 0/1 = 0
+const c9 = "!100.0" - "20"; //false - 20 = 1 - 20 = -19
+const c10 = "abc" - "a"; // NaN - NaN = NaN
 
-// const d1 = 200 === '200.00'
-// const d2 = 'abc' == 'abc'
-// const d3 = false == 
-// const d4 = true == '1'
-// const d5 = Boolean(null) === false
-// const d6 = Boolean(0) === 0
-// const d7 = Number('12a') === null
-// const d8 =  === 1 - 
-// const d9 =  === undefined - null
-// const d10 = '90' / '9' === 10
+const d1 = 200 === "200.00"; // false  (200 !== '200.00')
+const d2 = "abc" == "abc"; // true
+const d3 = false == NaN; // false  (0 != NaN)
+const d4 = true == "1"; // true
+const d5 = Boolean(null) === false; // true  (false === false)
+const d6 = Boolean(0) === 0; // false  (false !== 0)
+const d7 = Number("12a") === null; // false (NaN !== null)
+const d8 = NaN === 1 - NaN; // true (NaN === NaN)
+const d9 = NaN === undefined - null; // true (NaN === NaN-0)???
+const d10 = "90" / "9" === 10; // true (90/9 === 10)
 
-// const e1 = 200 && '200.00'
-// const e2 = 200 && '200.00'
-// const e3 = 'abc' || !'abc'
-// const e4 = false || 
-// const e5 = undefined && null
-// const e6 = true && 1
-// const e7 = Boolean(null) || false
-// const e8 = !Boolean(1) || true
-// const e9 = Boolean(0) || 0
-// const e10 = Number('12a') && !null
+const e1 = 200 && "200.00"; //200.00
+const e2 = 200 || "200.00"; //200
+const e3 = "abc" || !"abc"; //abc
+const e4 = false || NaN; //NaN
+const e5 = undefined && null; //undefined
+const e6 = true && 1; //1
+const e7 = Boolean(null) || false; //false (false || false )
+const e8 = !Boolean(1) || true; //true  (false || true)
+const e9 = Boolean(0) || 0; //0  (false || 0 )
+const e10 = Number("12a") && !null; //NaN  (NaN && true)
 
-// . Tạo function isSameType(x, y) nhận vào 2 tham số x và y có kiểu dữ liệu bất kỳ, kiểm tra xem x và y có cùng kiểu dữ liệu hay không. Nếu có thì trả về true, ngược lai trả về false
+// B2. Tạo function isSameType(x, y) nhận vào 2 tham số x và y có kiểu dữ liệu bất kỳ, kiểm tra xem x và y có cùng kiểu dữ liệu hay không. Nếu có thì trả về true, ngược lai trả về false
 // VD: isSameType(1, 1) // true isSameType(1, '1') // false
 
-// . Tạo function isAuthenticaed(x, y) nhận vào 2 tham số x và y. x là 1 giá trị boolean tượng trưng cho việc user nay
+// B3. Tạo function isAuthenticaed(x, y) nhận vào 2 tham số x và y. x là 1 giá trị boolean tượng trưng cho việc user nay
 // VD: isSameType(1, 1) // true isSameType(1, '1') // false
 
-// . Tạo function isNewFemaleUser(x) nhận vào tham số x mô tả 1 user có dạng như sau:
+// B4. Tạo function isNewFemaleUser(x) nhận vào tham số x mô tả 1 user có dạng như sau:
 // {
 // id: sẽ là 1 number bất kỳ
 // gender: sẽ là 'male' hoặc 'female',
@@ -66,7 +63,7 @@
 // isNewFemaleUser({id: 2, gender: 'female', joinDate:'1/1/2022' }) // 2
 // isNewFemaleUser({id: 3, gender: 'female', joinDate:'1/1/2021' }) // false
 
-// . Tạo function isAuthorized(x) nhận vào tham số x mô tả 1 user có dạng như sau:
+// B5. Tạo function isAuthorized(x) nhận vào tham số x mô tả 1 user có dạng như sau:
 // {
 // role: sẽ là 'admin' hoặc 'normal',
 // rank: sẽ là 1 number số nguyên có giá trị từ 0 đến 3 (0, 1, 2, 3)
@@ -78,7 +75,7 @@
 // isAuthorized({role: 'normal', rank: 0 }) // false
 // isAuthorized({role: 'normal', rank: 3 }) // true
 
-// . Tạo function isPayable(x, y) nhận vào 2 tham số x, y
+// B6. Tạo function isPayable(x, y) nhận vào 2 tham số x, y
 // - tham sô x mô tả tình trạng balance (số dư tài khoản) của user, có dạng như sau:
 // {
 // balance: sẽ là 1 number số nguyên dương bất kỳ
@@ -93,7 +90,7 @@
 // isPayable({balance: 1000000, isVIP: true }, 1000) // true
 // isPayable({balance: 1000, isVIP: true }, 1000000) // true
 
-// . Tạo function isPayable(x, y) nhận vào 2 tham số x, y
+// B7. Tạo function isPayable(x, y) nhận vào 2 tham số x, y
 // - tham sô x mô tả tình trạng balance (số dư tài khoản) của user, có dạng như sau:
 // {
 // balance: sẽ là 1 number số nguyên dương bất kỳ
@@ -108,13 +105,13 @@
 // isPayable({balance: 1000000, isVIP: true }, 1000) // true
 // isPayable({balance: 1000, isVIP: true }, 1000000) // true
 
-// . Tạo function daysCalc(x), nhận vào 1 tham số x mô tả 1 số là 1 tháng trong năm (1- 12). Trả về số ngày trong tháng đó dưới dạng 1 number. Tuy nhiên nếu như đối số truyền vào cho x không phải kiểu dữ liệu là number thì trả về chuỗi sau: "Wrong data type: argument is not a valid number"
+// B8. Tạo function daysCalc(x), nhận vào 1 tham số x mô tả 1 số là 1 tháng trong năm (1- 12). Trả về số ngày trong tháng đó dưới dạng 1 number. Tuy nhiên nếu như đối số truyền vào cho x không phải kiểu dữ liệu là number thì trả về chuỗi sau: "Wrong data type: argument is not a valid number"
 // VD:
 // daysCalc(12) // 31
 // daysCalc(11) // 30
 // daysCalc('abc') // "Wrong data type: argument is not a valid number"
 
-// .
+// B9.
 // - Tạo 1 mảng đại diện cho 1 nhóm 4 người, mỗi người được mô tả bằng một object như sau:
 // {
 // name: 1 string bất kỳ,
