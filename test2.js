@@ -162,10 +162,24 @@ isPayable({ balance: 1000, isVIP: true }, 1000000); // true
 // B8. Tạo function daysCalc(x), nhận vào 1 tham số x mô tả 1 số là 1 tháng trong năm (1- 12).
 //Trả về số ngày trong tháng đó dưới dạng 1 number.
 //Tuy nhiên nếu như đối số truyền vào cho x không phải kiểu dữ liệu là number thì trả về chuỗi sau: "Wrong data type: argument is not a valid number"
-let x8 = 12;
+let x8 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 function daysCalc(x8) {
-  if (typeof x8 === "number") {
-    return 31;
+  if (typeof x8 === "number" && x8 <= 12) {
+    if (x8 === 2) {
+      return "28 or 29";
+    } else if (
+      x8 === 1 ||
+      x8 === 3 ||
+      x8 === 5 ||
+      x8 === 7 ||
+      x8 === 8 ||
+      x8 === 10 ||
+      x8 === 12
+    ) {
+      return 31;
+    } else {
+      return 30;
+    }
   } else {
     return "Wrong data type: argument is not a valid number";
   }
@@ -173,6 +187,7 @@ function daysCalc(x8) {
 daysCalc(12); // 31
 daysCalc(11); // 30
 daysCalc("abc"); // "Wrong data type: argument is not a valid number"
+daysCalc(2); // '28 or 29'
 
 // B9.
 // - Tạo 1 mảng đại diện cho 1 nhóm 4 người, mỗi người được mô tả bằng một object như sau:
@@ -182,18 +197,29 @@ daysCalc("abc"); // "Wrong data type: argument is not a valid number"
 // }
 // - Tạo 1 function girlFilter(x), nhận vào x là 1 mảng chính là mảng đã tạo bên trên.
 //Lọc ra các thành viên là nữ (gender là 'female') trong mảng x, trả về 1 mảng khác chỉ chứa các thành viên nữ đó.
-// VD: girlFilter(testArr) // [{name: 'Hermione', gender: 'female'}, {name: 'Ginny', gender: 'female'}]
+// const testArr = [
+//   { name: "Harry", gender: "male" },
+//   { name: "Hermione", gender: "female" },
+//   { name: "Ron", gender: "male" },
+//   { name: "Ginny", gender: "female" },
+// ];
+// function girlFilter(testArr) {
+//   if (testArr[1]["gender"] === "female") {
+//     return testArr.testArr[1]["gender"] === "female";
+//   } else {
+//     return false;
+//   }
+// }
+// girlFilter(testArr); // [{name: 'Hermione', gender: 'female'}, {name: 'Ginny', gender: 'female'}]
+
 const testArr = [
-  { name: "Harry", gender: "male" },
-  { name: "Hermione", gender: "female" },
-  { name: "Ron", gender: "male" },
-  { name: "Ginny", gender: "female" },
-];
-function girlFilter(x9) {
-  if (testArr[1]["gender"] === "female") {
-    return testArr.testArr[1]["gender"] === "female";
-  } else {
-    return false;
-  }
-}
-girlFilter(testArr); // [{name: 'Hermione', gender: 'female'}, {name: 'Ginny', gender: 'female'}]
+      { name: "Harry", gender: "male" },
+      { name: "Hermione", gender: "female" },
+      { name: "Ron", gender: "male" },
+      { name: "Ginny", gender: "female" },
+    ];
+
+function girlFilter(testArr){
+const filterTesrArr = testArr.filter(function(testArr, index, array))
+    return testArr.gender === "female",
+};
