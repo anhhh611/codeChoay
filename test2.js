@@ -57,18 +57,35 @@ function isSameType(x, y) {
 isSameType(1, 1); // true
 isSameType(1, "1"); // false
 
-// B3. Tạo function isAuthenticaed(x, y) nhận vào 2 tham số x và y.
-//x là 1 giá trị boolean tượng trưng cho việc user nay
-// VD: isSameType(1, 1) // true isSameType(1, '1') // false
-// function isAuthenticaed(x1, y1){
-//     if () {
-//       return
-//     } else{
-//         return
-//     }
+// B3. Tạo function isAuthenticated(x, y) nhận vào 2 tham số x và y
+// - Tham số x mô tả 1 thông tin đăng nhập của 1 user (là nội dung request body của method POST trong REST API). 
+// x sẽ có dạng 1 object như sau: 
+// { 
+//      username: sẽ là 1 string bất kỳ,
+//      password: sẽ là 1 string bất kỳ,
 // }
-// isAuthenticaed(1, 1) // true
-// isAuthenticaed(1, '1') // false
+// - Tham số y mô tả 1 token của user (là 1 request header của method POST trong REST API)
+// y sẽ là 1 string bất kỳ
+// - isAuthenticated sẽ kiểm tra xem username có chính xác là 'abc' VÀ password chính xác là '123' VÀ token chính xác là 'def456' hay không. 
+// Nếu cả 3 điều kiện trên đều đúng, trả về true, các TH khác đều trả về false
+let x3 = {
+  username: 'abc',
+  password: '123',
+};
+let y3 = 'def456';
+function isAuthenticated(x3, y3) {
+  if (x3.username === 'abc'&& x3.password === '123' && y3 === 'def456') {
+    return true;
+  } else {
+    return false;
+  }
+};
+isAuthenticated({username: 'abc', password: '123'}, 'def456') // true
+isAuthenticated({username: 'abc1', password: '123'}, 'def456') // false
+isAuthenticated({username: 'abc', password: '1231'}, 'def456') // false
+isAuthenticated({username: 'abc', password: '123'}, 'def4561') // false
+isAuthenticated({username: 'abc1', password: '1231'}, 'def456') // false
+isAuthenticated({username: 'abc', password: '1231'}, 'def4561') // false
 
 // B4. Tạo function  nhận vào tham số x mô tả 1 user có dạng như sau:
 // {
@@ -78,14 +95,14 @@ isSameType(1, "1"); // false
 // }
 // Kiểm tra xem user x này có phải là 1 user nữ và mới đăng ký trong năm nay (2022) hay không.
 //Nếu đúng thì trả về id của user đó, nếu sai thì trả về false
-let x3 = {
+let x4 = {
   id: 1,
   gender: "female",
   joinDate: "22/10/2022",
 };
 function isNewFemaleUser(x3) {
-  if (x3.gender === "female" && x3.joinDate.includes("2022")) {
-    return x3.id;
+  if (x4.gender === "female" && x4.joinDate.includes("2022")) {
+    return x4.id;
   } else {
     return false;
   }
@@ -144,21 +161,6 @@ isPayable({ balance: 1000, isVIP: false }, 1000000); // false
 isPayable({ balance: 1000000, isVIP: true }, 1000); // true
 isPayable({ balance: 1000, isVIP: true }, 1000000); // true
 
-// B7. Tạo function isPayable(x, y) nhận vào 2 tham số x, y
-// - tham sô x mô tả tình trạng balance (số dư tài khoản) của user, có dạng như sau:
-// {
-// balance: sẽ là 1 number số nguyên dương bất kỳ
-// isVIP: sẽ là 1 booklean true hoặc false
-// }
-// - tham sô y mô tả giá tiền của 1 món hàng, sẽ là 1 số nguyên dương bất kỳ
-
-// Nếu như user không đủ tiền trả cho món hàng (balance ít hơn giá tiền) thì trả về false, còn không trả về true. Tuy nhiên nếu như user đó là  (isVIP là true) thì dù không đủ tiền vẫn cho phép mua, trả về true
-// VD:
-// isPayable({balance: 1000000, isVIP: false }, 1000) // true
-// isPayable({balance: 1000, isVIP: false }, 1000000) // false
-// isPayable({balance: 1000000, isVIP: true }, 1000) // true
-// isPayable({balance: 1000, isVIP: true }, 1000000) // true
-
 // B8. Tạo function daysCalc(x), nhận vào 1 tham số x mô tả 1 số là 1 tháng trong năm (1- 12).
 //Trả về số ngày trong tháng đó dưới dạng 1 number.
 //Tuy nhiên nếu như đối số truyền vào cho x không phải kiểu dữ liệu là number thì trả về chuỗi sau: "Wrong data type: argument is not a valid number"
@@ -197,29 +199,26 @@ daysCalc(2); // '28 or 29'
 // }
 // - Tạo 1 function girlFilter(x), nhận vào x là 1 mảng chính là mảng đã tạo bên trên.
 //Lọc ra các thành viên là nữ (gender là 'female') trong mảng x, trả về 1 mảng khác chỉ chứa các thành viên nữ đó.
-// const testArr = [
-//   { name: "Harry", gender: "male" },
-//   { name: "Hermione", gender: "female" },
-//   { name: "Ron", gender: "male" },
-//   { name: "Ginny", gender: "female" },
-// ];
-// function girlFilter(testArr) {
-//   if (testArr[1]["gender"] === "female") {
-//     return testArr.testArr[1]["gender"] === "female";
-//   } else {
-//     return false;
-//   }
-// }
-// girlFilter(testArr); // [{name: 'Hermione', gender: 'female'}, {name: 'Ginny', gender: 'female'}]
-
 const testArr = [
-      { name: "Harry", gender: "male" },
-      { name: "Hermione", gender: "female" },
-      { name: "Ron", gender: "male" },
-      { name: "Ginny", gender: "female" },
-    ];
+  { name: "Harry", gender: "male" },
+  { name: "Hermione", gender: "female" },
+  { name: "Ron", gender: "male" },
+  { name: "Ginny", gender: "female" },
+];
+// let people;
+// function girlFilter(people){
+//    return testArr.filter(people.gender == "female"),
+//    };
+//girlFilter(testArr); // [{name: 'Hermione', gender: 'female'}, {name: 'Ginny', gender: 'female'}]
 
-function girlFilter(testArr){
-const filterTesrArr = testArr.filter(function(testArr, index, array))
-    return testArr.gender === "female",
-};
+// function girlFilter(testArr){
+//   return testArr.gender == 'female';
+//   };
+
+function testFun(people){
+  return people.gender == 'female',
+  };
+
+function girlFilter(testFun){
+  return testFun(testArr),
+  };
