@@ -25,7 +25,7 @@ const b7 = Number(false); //0
 const b8 = Number(""); // 0
 const b9 = Number(" "); //0
 const b10 = Number({ key: "value" }); //NaN
-const b11 = Number([12.5]); //NaN???undefined???
+const b11 = Number([12.5]); //12.5 // note: nếu như array có 1 phần tử thì sẽ number hóa phần tử đó, còn từ 2 phần tử trở lên thì trả về NaN
 
 const b12 = function (x) {
   x = 10;
@@ -63,17 +63,30 @@ let c2 = Object.assign({}, c, {
     console.log(this.name);
   },
 });
-let c3 = Object.assign({}, c, delete c.name, delete c.brand, {
+// Hoặc let c2 = Object.assign({}, c, {
+//   name: "phoneName2",
+//   brand: "iphone2",
+//   sayName: function () {
+//     console.log(this.size);
+//   },
+// });
+// c2.size = "big",
+// c2.showName = function () {
+//   console.log(this.name);
+//   },
+let c3 = Object.assign({}, c, {
   sayName: function () {
     console.log(this.brand);
   },
 });
+delete c3.name;
+delete c3.brand;
 
 // - Từ giá trị của object c, tạo ra các biến c4, c5 là các mảng như sau:
 // c4 là 1 mảng chứa các tên property của c
 // c5 là 1 mảng chứa các giá trị property của c
-let c4 = Object.assign([], Object.keys(c));
-let c5 = Object.assign([], Object.values(c));
+let c4 = Object.keys(c);
+let c5 = Object.values(c);
 
 // Xóa item thứ 2 từ trái qua của c4
 c4 = c4.splice(1, 1);
@@ -115,7 +128,8 @@ diskArea(5); // 'Diện tích của hình tròn là :78.53999999999999'
 // - beforeLastIndex(x) {} : nhận vào 1 tham số x là 1 array, trả về item trước item cuối cùng của array đó
 // VD beforeLastIndex([1, '2', true]) sẽ trả về '2', beforeLastIndex(['a', null, 100, false]) sẽ trả về 100
 function beforeLastIndex(myArray) {
-  return myArray[[myArray.length - 1] - 1];
+  const lastIndex = [myArray.length - 1];
+  return myArray[lastIndex - 1];
 }
 beforeLastIndex([1, "2", true]); // '2'
 beforeLastIndex(["a", null, 100, false]); // '100'
