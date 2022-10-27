@@ -47,9 +47,11 @@ const e10 = Number("12a") && !null; //NaN  (NaN && true)
 
 // B2. Tạo function isSameType(x, y) nhận vào 2 tham số x và y có kiểu dữ liệu bất kỳ, kiểm tra xem x và y có cùng kiểu dữ liệu hay không.
 //Nếu có thì trả về true, ngược lai trả về false
+// Bài này chưa chữa
 function isSameType(x2, y2) {
   if (typeof x2 === typeof y2) {
     if (
+      //x2 và y2 cùng là obj => true
       typeof x2 === "object" &&
       x2 !== null &&
       Array.isArray(x2) === false &&
@@ -59,6 +61,7 @@ function isSameType(x2, y2) {
     ) {
       return true;
     } else if (
+      //x2 là obj và y2 là null or arr => false
       typeof x2 === "object" &&
       x2 !== "null" &&
       Array.isArray(x2) === false &&
@@ -67,6 +70,7 @@ function isSameType(x2, y2) {
     ) {
       return false;
     } else if (
+      //x2 là null or arr và y2 obj => false
       (x2 === null || Array.isArray(x2) === true) &&
       typeof y2 === "object" &&
       y2 !== "null" &&
@@ -74,6 +78,7 @@ function isSameType(x2, y2) {
     ) {
       return false;
     } else if (
+      //x2 và y2 cùng không phải là obj => true
       typeof x2 !== "object" &&
       x2 !== null &&
       Array.isArray(x2) === false &&
@@ -93,11 +98,6 @@ isSameType(1, "1"); // false
 isSameType({}, {}); // true
 isSameType([], []); // true  (undefined???)
 isSameType([], {}); // false
-
-// No.53: x2 và y2 cùng là obj => true
-// No.61: x2 là obj và y2 là null or arr => false
-//  No.69: x2 là null or arr và y2 obj => false
-//  No.77: x2 và y2 cùng không phải là obj => true
 
 // B3. Tạo function isAuthenticated(x, y) nhận vào 2 tham số x và y
 // - Tham số x mô tả 1 thông tin đăng nhập của 1 user (là nội dung request body của method POST trong REST API).
@@ -232,10 +232,9 @@ function daysCalc(x8) {
 
 // Cách 2
 function daysCalc(x8) {
-  let result;
   switch (x8) {
     case 2: {
-      result = "28 or 29";
+      return "28 or 29";
       break;
     }
     case 1:
@@ -245,21 +244,20 @@ function daysCalc(x8) {
     case 8:
     case 10:
     case 12: {
-      result = 31;
+      return 31;
       break;
     }
     case 4:
     case 6:
     case 9:
     case 11: {
-      result = 30;
+      return 30;
       break;
     }
     default: {
-      result = "Wrong data type: argument is not a valid number";
+      return "Wrong data type: argument is not a valid number";
     }
   }
-  return result;
 }
 
 daysCalc(12); // 31
