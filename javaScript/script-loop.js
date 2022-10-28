@@ -47,9 +47,20 @@ even(1); // trả về []
 
 // B3. Tạo function doubleAndTriple(x), nhận vào tham số x là 1 mảng, item là các number bất kỳ.
 //Trả về 1 mảng mới chứa các item là item của mảng x gấp 2 lên nếu như là số chẵn, gấp 3 lên nếu như là số lẻ
-function doubleAndTriple(x) {}
+function doubleAndTriple(x) {
+  let result = [];
+  x.map((item) => {
+    if (item % 2 === 0) {
+      result.push((item *= 2));
+    } else {
+      result.push((item *= 3));
+    }
+  });
+  return result;
+}
+
 doubleAndTriple([33, 141, 190]); // trả về [99, 423, 380]
-doubleAndTriple([5, 63463232, 555, 99, 500]); // trả về [15, 190389696, 1665, 297, 1000]
+doubleAndTriple([5, 63463232, 555, 99, 500]); // trả về [15, 126926464, 1665, 297, 1000]
 
 //  B4. Tạo function countRole(x, y)
 // - Tham số x sẽ đại diện cho danh sách nv công ty dưới dạng 1 mảng chứa các object các là các nhân viên, có dạng như sau:
@@ -81,7 +92,10 @@ const testArr3 = [
   { name: "Alex", role: "developer" },
   { name: "Harry", role: "designer" },
 ];
-
+const countRole = function (x, y) {
+  const result = x.filter((people) => people.role === y);
+  return result.length;
+};
 countRole(testArr1, "designer"); // trả về 1
 countRole(testArr2, "developer"); // trả về 2
 countRole(testArr3, "PM"); // trả về 0
@@ -116,9 +130,14 @@ const testArr6 = [
   { username: "Lemon", region: "AFRICA" },
 ];
 
-regionFilter(testArr4, "Europe"); // trả về []
-regionFilter(testArr5, "Antarctica"); // trả về [{ username: "Gomez", region: "ANTARCTICA" }]
-regionFilter(testArr6, "Africa"); // trả về [{ username: "Anna", region: "AFRICA" }, { username: "Lemon", region: "AFRICA" }]
+const regionFilter = function (x, y) {
+  const result = x.filter((userPass) => userPass.region === y);
+  return result;
+};
+regionFilter(testArr4, "ASIA"); // trả về [{ username: "Steve", region: "ASIA" }]
+regionFilter(testArr4, "EUROPE"); // trả về []
+regionFilter(testArr5, "ANTARCTICA"); // trả về [{ username: "Gomez", region: "ANTARCTICA" }]
+regionFilter(testArr6, "AFRICA"); // trả về [{ username: "Anna", region: "AFRICA" }, { username: "Lemon", region: "AFRICA" }]
 
 // B6. Tạo function genderFilter(x, y)
 // - Tham số x sẽ đại diện cho danh sách nv công ty dưới dạng 1 mảng chứa các object các là các nhân viên, có dạng như sau:
@@ -148,10 +167,13 @@ const testArr9 = [
   { name: "Anna", gender: "female" },
   { name: "Lemon", gender: "female" },
 ];
-
+const genderFilter = function (x, y) {
+  const result = x.filter((people) => people.gender === y);
+  return result;
+};
+genderFilter(testArr9, "male"); // trả về ["John"]
 genderFilter(testArr7, "male"); // trả về ["John", "Steve", "Tim"]
 genderFilter(testArr8, "female"); // trả về ["Gomez", "Rose", "Lisa"]
-genderFilter(testArr9, "male"); // trả về ["John"]
 
 // B7. Tạo function findMember(x, y)
 // - Tham số x sẽ đại diện cho danh sách 1 nhóm các lãnh đạo quốc gia, dưới dạng 1 mảng chứa các object các là các lãnh đạo, có dạng như sau:
@@ -192,7 +214,13 @@ const G7 = [
   { name: "Charles Michel", country: "European Union", age: 46 },
   { name: "Ursula von der Leyen", country: "European Union", age: 64 },
 ];
-
+const findMember = function (x, y) {
+  const result = x.filter((people) => people.name === y);
+  if (result.length === 0) {
+    return "Member not found";
+  }
+  return result;
+};
 findMember(G7, "Rishi Sunak"); // trả về { name: "Rishi Sunak", country: "United Kingdom", age: 42 }
 findMember(SEA, "Hun Sen"); // trả về { name: "Hun Sen", country: "Cambodia", age: 70 }
 findMember(G7, "Min Aung Hlaing"); // trả về "Member not found"
