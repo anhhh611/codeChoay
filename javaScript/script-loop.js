@@ -1,29 +1,28 @@
 // B1. Tạo function sum(x), nhận vào tham số x là 1 number. Trả về tổng các số tự nhiên từ 1 cho đến x.
 //Nếu như x là một số <= 1 thì trả về 1 string "Please use a number that bigger than 1"
 function sum(x) {
-  if (x > 1) {
-    let result = 0; //xác định biến sum và khởi tạo nó bằng 0.
-    for (let i = 1; i <= x; i++) {
-      //(khoi_tao_bien/điểm bắt đầu ; check_dieu_kien; tang/giam_bien)
-      result += i; // Khối lệnh được thực thi //cộng giá trị i vào sum
-    }
-    return result; //Trả về tổng các số tự nhiên từ 1 cho đến x. (sum)
-  } else {
+  if (x <= 1) {
     return "Please use a number that bigger than 1";
-  }
-}
-// Hoặc
-function sum(x) {
-  let result = 0;
-  for (let i = 1; i <= x; i++) {
-    if (x > 1) {
+  } else {
+    let result = 0;
+    for (let i = 1; i <= x; i++) {
       result += i;
-    } else {
-      return "Please use a number that bigger than 1";
     }
+    return result;
   }
-  return result;
 }
+// Hoặc lồng if trong for cũng được nhưng sẽ phải chạy hết vòng lặp rồi mới chạy tới đk if thì sẽ mất nhiều time chạy hơn => không tối ưu
+// function sum(x) {
+//   let result = 0;
+//   for (let i = 1; i <= x; i++) {
+//     if (x > 1) {
+//       result += i;
+//     } else {
+//       return "Please use a number that bigger than 1";
+//     }
+//   }
+//   return result;
+// }
 
 sum(5); // trả về 15 (vì 1 + 2 + 3 + 4 + 5 = 15)
 sum(10); // trả về 55 (vì 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55)
@@ -48,17 +47,11 @@ even(1); // trả về []
 // B3. Tạo function doubleAndTriple(x), nhận vào tham số x là 1 mảng, item là các number bất kỳ.
 //Trả về 1 mảng mới chứa các item là item của mảng x gấp 2 lên nếu như là số chẵn, gấp 3 lên nếu như là số lẻ
 function doubleAndTriple(x) {
-  let result = [];
-  x.map((item) => {
-    if (item % 2 === 0) {
-      result.push((item *= 2));
-    } else {
-      result.push((item *= 3));
-    }
+  return x.map((item) => {
+    return item % 2 === 0 ? item * 2 : item * 3;
   });
-  return result;
 }
-
+// map trả về 1 mảng nên không cần tạo mảng mới
 doubleAndTriple([33, 141, 190]); // trả về [99, 423, 380]
 doubleAndTriple([5, 63463232, 555, 99, 500]); // trả về [15, 126926464, 1665, 297, 1000]
 
@@ -131,13 +124,13 @@ const testArr6 = [
 ];
 
 const regionFilter = function (x, y) {
-  const result = x.filter((userPass) => userPass.region === y);
+  const result = x.filter((userPass) => userPass.region === y.toUpperCase());
   return result;
 };
 regionFilter(testArr4, "ASIA"); // trả về [{ username: "Steve", region: "ASIA" }]
-regionFilter(testArr4, "EUROPE"); // trả về []
-regionFilter(testArr5, "ANTARCTICA"); // trả về [{ username: "Gomez", region: "ANTARCTICA" }]
-regionFilter(testArr6, "AFRICA"); // trả về [{ username: "Anna", region: "AFRICA" }, { username: "Lemon", region: "AFRICA" }]
+regionFilter(testArr4, "europe"); // trả về []
+regionFilter(testArr5, "antarctica"); // trả về [{ username: "Gomez", region: "ANTARCTICA" }]
+regionFilter(testArr6, "africa"); // trả về [{ username: "Anna", region: "AFRICA" }, { username: "Lemon", region: "AFRICA" }]
 
 // B6. Tạo function genderFilter(x, y)
 // - Tham số x sẽ đại diện cho danh sách nv công ty dưới dạng 1 mảng chứa các object các là các nhân viên, có dạng như sau:
@@ -167,10 +160,17 @@ const testArr9 = [
   { name: "Anna", gender: "female" },
   { name: "Lemon", gender: "female" },
 ];
+// const genderFilter = function (x, y) {
+//   const result = x.filter((people) => people.gender === y);
+//   return result;
+// };
 const genderFilter = function (x, y) {
-  const result = x.filter((people) => people.gender === y);
-  return result;
+  const filtered = x.filter((people) => people.gender === y);
+  return filtered.map((item) => {
+    return item.name;
+  });
 };
+
 genderFilter(testArr9, "male"); // trả về ["John"]
 genderFilter(testArr7, "male"); // trả về ["John", "Steve", "Tim"]
 genderFilter(testArr8, "female"); // trả về ["Gomez", "Rose", "Lisa"]
@@ -215,12 +215,13 @@ const G7 = [
   { name: "Ursula von der Leyen", country: "European Union", age: 64 },
 ];
 const findMember = function (x, y) {
-  const result = x.filter((people) => people.name === y);
-  if (result.length === 0) {
+  const result = x.find((people) => people.name === y);
+  if (!result) {
     return "Member not found";
   }
   return result;
 };
-findMember(G7, "Rishi Sunak"); // trả về { name: "Rishi Sunak", country: "United Kingdom", age: 42 }
-findMember(SEA, "Hun Sen"); // trả về { name: "Hun Sen", country: "Cambodia", age: 70 }
+findMember(G7, "Rishi Sunak"); // trả về obj { name: "Rishi Sunak", country: "United Kingdom", age: 42 }
+findMember(SEA, "Hun Sen"); // trả về obj { name: "Hun Sen", country: "Cambodia", age: 70 }
 findMember(G7, "Min Aung Hlaing"); // trả về "Member not found"
+// trả về obj nên phải dùng find chứ không phải dùng filter
